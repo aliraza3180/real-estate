@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { assets } from "../assets/assets";
 import { useEffect } from "react";
+import { motion } from "motion/react";
+
 const NavBar = () => {
   const [showMenu, setShowMenu] = useState(false);
   useEffect(() => {
@@ -14,7 +16,13 @@ const NavBar = () => {
     };
   }, [showMenu]);
   return (
-    <div className="absolute top-0 left-0 w-full z-10">
+    <motion.div
+      initial={{ opacity: 0, y: -70 }}
+      transition={{ duration: 1 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="absolute top-0 left-0 w-full z-10"
+    >
       <div className="container mx-auto flex justify-between items-center py-4 px-6 md:px-20 lg:px-32 bg-transparent">
         <img src={assets.logo} alt="" />
         <ul className="hidden md:flex gap-7 text-white">
@@ -90,7 +98,7 @@ const NavBar = () => {
           </ul>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
